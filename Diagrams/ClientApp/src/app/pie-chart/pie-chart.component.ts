@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChartOptions } from 'chart.js';
 import { Label, SingleDataSet } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
-import { TwoColumn } from '../models/two-column';
+import { TwoColumns } from '../models/two-columns';
 
 @Component({
   selector: 'app-pie-chart',
@@ -22,10 +22,10 @@ export class PieChartComponent implements OnInit {
     }
   };
   public pieChartLabels: Label[];
-  public pieChartData: SingleDataSet;
+  public pieChartData: number[];
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
-  public rows: TwoColumn[];
+  public rows: TwoColumns[];
 
   constructor() { }
 
@@ -52,7 +52,7 @@ export class PieChartComponent implements OnInit {
   }
 
   public addRow(): void {
-    const row: TwoColumn = {
+    const row: TwoColumns = {
       title: 'New row',
       value: 0
     };
@@ -60,7 +60,7 @@ export class PieChartComponent implements OnInit {
     this.exportFromTable();
   }
 
-  public removeRow(row: TwoColumn): void {
+  public removeRow(row: TwoColumns): void {
     const index = this.rows.indexOf(row);
     if (index > -1) {
        this.rows.splice(index, 1);

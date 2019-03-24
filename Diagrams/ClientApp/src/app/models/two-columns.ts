@@ -1,4 +1,4 @@
-export class TwoColumn {
+export class TwoColumns {
     title: string;
     value: number;
 }
