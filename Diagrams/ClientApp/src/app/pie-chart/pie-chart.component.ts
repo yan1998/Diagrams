@@ -19,6 +19,9 @@ export class PieChartComponent implements OnInit {
           return label;
         },
       },
+    },
+    legend: {
+      position: 'bottom'
     }
   };
   public pieChartLabels: Label[];
@@ -26,14 +29,15 @@ export class PieChartComponent implements OnInit {
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
   public rows: TwoColumns[];
+  public isExpanded = true;
 
   constructor() { }
 
   ngOnInit() {
     this.rows = [
-      { title: 'Sales', value: 300 },
-      { title: 'In-Store Sales', value: 500 },
-      { title: 'Mail Sales', value: 100 }
+      { title: 'Sales', value: 30 },
+      { title: 'In-Store Sales', value: 50 },
+      { title: 'Mail Sales', value: 10 }
     ];
     this.exportFromTable();
   }
@@ -47,14 +51,10 @@ export class PieChartComponent implements OnInit {
     });
   }
 
-  public refreshChart(): void {
-    this.exportFromTable();
-  }
-
   public addRow(): void {
     const row: TwoColumns = {
-      title: 'New row',
-      value: 0
+      title: null,
+      value: null
     };
     this.rows.push(row);
     this.exportFromTable();
@@ -65,6 +65,10 @@ export class PieChartComponent implements OnInit {
     if (index > -1) {
        this.rows.splice(index, 1);
     }
+    this.exportFromTable();
+  }
+
+  public onKey(event: any): void {
     this.exportFromTable();
   }
 }
