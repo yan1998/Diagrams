@@ -8,6 +8,8 @@ import { HomeComponent } from './home/home.component';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatButtonModule, MatInputModule, MatExpansionModule, MatGridListModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,12 @@ import { PieChartComponent } from './pie-chart/pie-chart.component';
     HttpClientModule,
     FormsModule,
     ChartsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatInputModule,
+    MatExpansionModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent]
