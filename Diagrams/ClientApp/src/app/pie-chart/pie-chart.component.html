@@ -1,8 +1,8 @@
 <div class="row">
   <div class="col-lg-6 col-md-6 col-sm-8">
     <mat-accordion>
-      <mat-expansion-panel [expanded]='isExpanded' (click)="isExpanded = !isExpanded">
-        <mat-expansion-panel-header>
+      <mat-expansion-panel [expanded]='isExpanded'>
+        <mat-expansion-panel-header (click)="isExpanded = !isExpanded">
           <span *ngIf="isExpanded">Hide data table</span>
           <span *ngIf="!isExpanded">Show data table</span>
         </mat-expansion-panel-header>
