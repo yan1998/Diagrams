@@ -7,52 +7,59 @@
                 <span class='icon-bar'></span>
                 <span class='icon-bar'></span>
             </button>
-            <a class='navbar-brand' [routerLink]='["/"]'>Diagrams</a>
+            <a class='navbar-brand' [routerLink]='["/"]'>{{ ('navbar.title' | translate) || 'Diagrams' }}</a>
         </div>
         <div class='clearfix'></div>
         <div class='navbar-collapse collapse' [ngClass]='{ "in": isExpanded }'>
             <ul class='nav navbar-nav'>
                 <li [routerLinkActive]='["link-active"]' [routerLinkActiveOptions]='{ exact: true }'>
                     <a [routerLink]='["/"]' (click)='collapse()'>
-                        <span class='glyphicon glyphicon-home'></span> Home
+                        <span class='glyphicon glyphicon-home'></span> {{ ('navbar.home' | translate) || 'Home' }}
                     </a>
                 </li>
                 <li [routerLinkActive]='["link-active"]'>
                     <a [routerLink]='["/pie-chart"]' (click)='collapse()'>
-                        Pie Chart
+                        {{ ('navbar.pieChart' | translate) || 'Pie Chart' }}
                     </a>
                 </li>
                 <li [routerLinkActive]='["link-active"]'>
                     <a [routerLink]='["/bar-chart"]' (click)='collapse()'>
-                        Bar Chart
+                        {{ ('navbar.barChart' | translate) || 'Bar Chart' }}
                     </a>
                 </li>
                 <li [routerLinkActive]='["link-active"]'>
                     <a [routerLink]='["/line-chart"]' (click)='collapse()'>
-                        Line Chart
+                        {{ ('navbar.lineChart' | translate) || 'Line Chart' }}
                     </a>
                 </li>
                 <li [routerLinkActive]='["link-active"]'>
                     <a [routerLink]='["/doughnut-chart"]' (click)='collapse()'>
-                        Doughnut Chart
+                        {{ ('navbar.doughnutChart' | translate) || 'Doughnut Chart' }}
                     </a>
                 </li>
                 <li [routerLinkActive]='["link-active"]'>
                     <a [routerLink]='["/radar-chart"]' (click)='collapse()'>
-                        Radar Chart
+                        {{ ('navbar.radarChart' | translate) || 'Radar Chart' }}
                     </a>
                 </li>
                 <li [routerLinkActive]='["link-active"]'>
                     <a [routerLink]='["/polar-area-chart"]' (click)='collapse()'>
-                        Polar Area Chart
+                        {{ ('navbar.polarAreaChart' | translate) || 'Polar Area Chart' }}
                     </a>
                 </li>
                 <li [routerLinkActive]='["link-active"]'>
                     <a [routerLink]='["/bubble-chart"]' (click)='collapse()'>
-                        Bubble Chart
+                        {{ ('navbar.bubbleChart' | translate) || 'Bubble Chart' }}
                     </a>
                 </li>
             </ul>
+            <mat-form-field>
+                <mat-label>{{ ('navbar.language' | translate) || 'Language' }}</mat-label>
+                <select matNativeControl [(ngModel)]="language" (change)="changelanguage()">
+                    <option value="en" selected>English</option>
+                    <option value="ru">Русский</option>
+                </select>
+            </mat-form-field>
         </div>
     </div>
 </div>

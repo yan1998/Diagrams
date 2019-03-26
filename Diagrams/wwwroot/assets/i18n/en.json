@@ -1,0 +1,22 @@
+{
+    "navbar": {
+        "title": "Diagrams",
+        "home": "Home",
+        "pieChart": "Pie Chart",
+        "barChart": "Bar Chart",
+        "lineChart": "Line Chart",
+        "doughnutChart": "Doughnut Chart",
+        "radarChart": "Radar Chart",
+        "polarAreaChart": "Polar Area Chart",
+        "bubbleChart": "Bubble Chart",
+        "language": "Language"
+    },
+    "pieChart": {
+        "hideDataTable": "Hide data table",
+        "showDataTable": "Show data table",
+        "dataTable": "Data Table",
+        "title": "Title",
+        "value": "Value",
+        "outputChart": "Output Chart"
+    }
+}

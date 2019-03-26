@@ -1,0 +1,22 @@
+{
+    "navbar": {
+        "title": "Диаграммы",
+        "home": "Главная",
+        "pieChart": "Круговая Диаграмма",
+        "barChart": "Гистограмма",
+        "lineChart": "Линейная Диаграмма",
+        "doughnutChart": "Кольцевая Диаграмма",
+        "radarChart": "Радиальная Диаграмма",
+        "polarAreaChart": "Диаграмма Полярной Зоны",
+        "bubbleChart": "Пузырьковая Диаграмма",
+        "language": "Язык"
+    },
+    "pieChart": {
+        "hideDataTable": "Свернуть таблицу",
+        "showDataTable": "Развернуть таблицу",
+        "dataTable": "Таблица",
+        "title": "Заголовок",
+        "value": "Значение",
+        "outputChart": "Итоговая Диаграмма"
+    }
+}
