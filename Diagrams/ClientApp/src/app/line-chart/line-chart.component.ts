@@ -1,58 +1,60 @@
 import { Component, OnInit } from '@angular/core';
+import { ChartDataSets, ChartOptions } from 'chart.js';
+import { Color, Label } from 'ng2-charts';
+import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import { AsotiativeValues } from '../models/asotiative-values';
-import * as pluginDataLabels from 'chartjs-plugin-datalabels';
-import { ChartOptions, ChartDataSets } from 'chart.js';
-import { Label } from 'ng2-charts';
 
 @Component({
-  selector: 'app-bar-chart',
-  templateUrl: './bar-chart.component.html',
-  styleUrls: ['./bar-chart.component.css']
+  selector: 'app-line-chart',
+  templateUrl: './line-chart.component.html',
+  styleUrls: ['./line-chart.component.css']
 })
-export class BarChartComponent implements OnInit {
+export class LineChartComponent implements OnInit {
 
-  public barChartOptions: ChartOptions = {
+  public lineChartData: ChartDataSets[];
+  public lineChartLabels: Label[];
+  public lineChartOptions: (ChartOptions & { annotation: any }) = {
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
-    scales: { xAxes: [{}], yAxes: [{ ticks: { beginAtZero: true } }]},
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'end',
-      }
-    }
+    scales: {
+      xAxes: [{}],
+      yAxes: [
+        {
+          id: 'y-axis-0',
+          position: 'left',
+          ticks: { beginAtZero: true }
+        }
+      ]
+    },
+    annotation: {}
   };
-  public barChartLabels: Label[];
-  public barChartLegend = true;
-  public barChartPlugins = [pluginDataLabels];
-  public objectKeys = Object.keys;
-  public barChartData: ChartDataSets[];
+  public lineChartLegend = true;
+  public lineChartPlugins = [pluginAnnotations];
 
   public isExpanded = false;
   public rows: AsotiativeValues[];
   public datasetNames: string[];
-  public datasetNumber = 3;
+  public datasetNumber = 4;
 
   constructor() { }
 
   ngOnInit() {
-    this.datasetNames = ['Set 1', 'Set 2'];
+    this.datasetNames = ['Set 1', 'Set 2', 'Set 3'];
     this.rows = [
-      { title: '2011', values: [59, 48]},
-      { title: '2012', values: [80, 40]},
-      { title: '2013', values: [81, 19]},
-      { title: '2014', values: [56, 86]},
-      { title: '2015', values: [55, 27]},
+      { title: 'January', values: [65, 28, 30]},
+      { title: 'February', values: [59, 48, 80]},
+      { title: 'March', values: [80, 40, 70]},
+      { title: 'April', values: [81, 19, 90]},
+      { title: 'May', values: [56, 86, 100]},
     ];
     this.exportFromTable();
   }
 
   private exportFromTable(): void {
-    this.barChartData = [];
-    this.barChartLabels = [];
+    this.lineChartData = [];
+    this.lineChartLabels = [];
     let isFirstStep = true;
     this.rows.forEach(row => {
-      this.barChartLabels.push(row.title);
+      this.lineChartLabels.push(row.title);
       let i = 0;
       this.datasetNames.forEach(datasetName => {
         if (isFirstStep) {
@@ -60,9 +62,9 @@ export class BarChartComponent implements OnInit {
             label: datasetName,
             data: [row.values[i]]
           };
-          this.barChartData.push(chartDataSets);
+          this.lineChartData.push(chartDataSets);
         } else {
-          (this.barChartData[i].data as number[]).push(row.values[i]);
+          (this.lineChartData[i].data as number[]).push(row.values[i]);
         }
         i++;
       });
