@@ -15,6 +15,7 @@ import { MatButtonModule, MatInputModule, MatExpansionModule, MatGridListModule,
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
     NavMenuComponent,
     HomeComponent,
     PieChartComponent,
-    BarChartComponent
+    BarChartComponent,
+    LineChartComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

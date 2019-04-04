@@ -28,8 +28,9 @@ export class PieChartComponent implements OnInit {
   public pieChartData: number[];
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
+  
   public rows: TwoColumns[];
-  public isExpanded = true;
+  public isExpanded = false;
 
   constructor() { }
 
