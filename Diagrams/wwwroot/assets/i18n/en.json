@@ -11,7 +11,7 @@
         "bubbleChart": "Bubble Chart",
         "language": "Language"
     },
-    "pieChart": {
+    "shared": {
         "hideDataTable": "Hide data table",
         "showDataTable": "Show data table",
         "dataTable": "Data Table",

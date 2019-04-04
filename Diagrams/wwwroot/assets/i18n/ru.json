@@ -11,7 +11,7 @@
         "bubbleChart": "Пузырьковая Диаграмма",
         "language": "Язык"
     },
-    "pieChart": {
+    "shared": {
         "hideDataTable": "Свернуть таблицу",
         "showDataTable": "Развернуть таблицу",
         "dataTable": "Таблица",
