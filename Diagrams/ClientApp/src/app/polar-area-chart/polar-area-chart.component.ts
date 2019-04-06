@@ -10,7 +10,7 @@ import { TwoColumns } from '../models/two-columns';
 export class PolarAreaChartComponent implements OnInit {
 
   public polarAreaChartLabels: Label[];
-  public polarAreaChartData: SingleDataSet;
+  public polarAreaChartData: number[];
   public polarAreaLegend = true;
 
   public rows: TwoColumns[];
