@@ -16,6 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
+import { PolarAreaChartComponent } from './polar-area-chart/polar-area-chart.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LineChartComponent } from './line-chart/line-chart.component';
     HomeComponent,
     PieChartComponent,
     BarChartComponent,
-    LineChartComponent
+    LineChartComponent,
+    PolarAreaChartComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

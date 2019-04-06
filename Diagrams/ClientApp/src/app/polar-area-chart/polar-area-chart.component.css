@@ -1,0 +1,11 @@
+th, h2, #addBtnRow {
+    text-align: center;
+}
+
+.titles {
+    width: 145px;
+}
+
+.values {
+    width: 75px;
+}

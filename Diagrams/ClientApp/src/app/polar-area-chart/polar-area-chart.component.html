@@ -48,13 +48,11 @@
   <div class="col-lg-12 col-md-12 col-sm-12">
     <h2>{{ ('shared.outputChart' | translate) || 'Output Chart' }}</h2>
     <div style="display: block">
-      <canvas baseChart 
-        [data]="pieChartData" 
-        [labels]="pieChartLabels" 
-        [chartType]="'pie'" 
-        [options]="pieChartOptions"
-        [plugins]="pieChartPlugins" 
-        [legend]="pieChartLegend">
+      <canvas baseChart
+        [data]="polarAreaChartData"
+        [labels]="polarAreaChartLabels"
+        [legend]="polarAreaLegend"
+        [chartType]="'polarArea'">
       </canvas>
     </div>
   </div>
