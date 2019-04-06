@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Label, SingleDataSet } from 'ng2-charts';
+import { Label } from 'ng2-charts';
 import { TwoColumns } from '../models/two-columns';
+import { TranslateService } from '@ngx-translate/core';
+import { GuiNotificatorService } from '../services/gui-notificator.service';
 
 @Component({
   selector: 'app-polar-area-chart',
@@ -16,7 +18,8 @@ export class PolarAreaChartComponent implements OnInit {
   public rows: TwoColumns[];
   public isExpanded = false;
 
-  constructor() { }
+  constructor(private _translate: TranslateService,
+    private _guiNotificatorService: GuiNotificatorService) { }
 
   ngOnInit() {
     this.rows = [
@@ -48,6 +51,11 @@ export class PolarAreaChartComponent implements OnInit {
   }
 
   public removeRow(row: TwoColumns): void {
+    if (this.rows.length === 1) {
+      const message = this._translate.instant('errors.1RowRemained');
+      this._guiNotificatorService.showError(message);
+      return;
+    }
     const index = this.rows.indexOf(row);
     if (index > -1) {
       this.rows.splice(index, 1);

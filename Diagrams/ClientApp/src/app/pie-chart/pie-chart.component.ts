@@ -3,6 +3,8 @@ import { ChartOptions } from 'chart.js';
 import { Label, SingleDataSet } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { TwoColumns } from '../models/two-columns';
+import { GuiNotificatorService } from '../services/gui-notificator.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-pie-chart',
@@ -32,7 +34,8 @@ export class PieChartComponent implements OnInit {
   public rows: TwoColumns[];
   public isExpanded = false;
 
-  constructor() { }
+  constructor(private _translate: TranslateService,
+    private _guiNotificatorService: GuiNotificatorService) { }
 
   ngOnInit() {
     this.rows = [
@@ -62,6 +65,11 @@ export class PieChartComponent implements OnInit {
   }
 
   public removeRow(row: TwoColumns): void {
+    if (this.rows.length === 1) {
+      const message = this._translate.instant('errors.1RowRemained');
+      this._guiNotificatorService.showError(message);
+      return;
+    }
     const index = this.rows.indexOf(row);
     if (index > -1) {
        this.rows.splice(index, 1);
