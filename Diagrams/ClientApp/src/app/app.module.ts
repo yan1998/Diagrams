@@ -18,6 +18,7 @@ import { BarChartComponent } from './bar-chart/bar-chart.component';
 import { LineChartComponent } from './line-chart/line-chart.component';
 import { PolarAreaChartComponent } from './polar-area-chart/polar-area-chart.component';
 import { RadarChartComponent } from './radar-chart/radar-chart.component';
+import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { RadarChartComponent } from './radar-chart/radar-chart.component';
     BarChartComponent,
     LineChartComponent,
     PolarAreaChartComponent,
-    RadarChartComponent
+    RadarChartComponent,
+    DoughnutChartComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

@@ -54,14 +54,14 @@
     <div class="col-lg-12 col-md-12 col-sm-12">
       <h2>{{ ('shared.outputChart' | translate) || 'Output Chart' }}</h2>
       <div style="display: block">
-          <canvas baseChart 
-            [datasets]="lineChartData" 
-            [labels]="lineChartLabels"
-            [options]="lineChartOptions" 
-            [legend]="lineChartLegend" 
-            [chartType]="'line'"
-            [plugins]="lineChartPlugins">
-          </canvas>
+        <canvas baseChart 
+          [datasets]="lineChartData" 
+          [labels]="lineChartLabels"
+          [options]="lineChartOptions" 
+          [legend]="lineChartLegend" 
+          [chartType]="'line'"
+          [plugins]="lineChartPlugins">
+        </canvas>
       </div>
     </div>
   </div>

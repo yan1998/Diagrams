@@ -1,0 +1,11 @@
+th, h2, #addBtnRow {
+    text-align: center;
+}
+
+.removeColumnBtn {
+    margin-left: 10px; 
+}
+
+#dataTable {
+    overflow-x: auto;
+}

@@ -44,7 +44,7 @@ export class LineChartComponent implements OnInit {
       { title: 'February', values: [59, 48, 80]},
       { title: 'March', values: [80, 40, 70]},
       { title: 'April', values: [81, 19, 90]},
-      { title: 'May', values: [56, 86, 100]},
+      { title: 'May', values: [56, 86, 100]}
     ];
     this.exportFromTable();
   }
