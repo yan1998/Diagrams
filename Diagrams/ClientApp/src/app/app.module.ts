@@ -21,6 +21,7 @@ import { RadarChartComponent } from './radar-chart/radar-chart.component';
 import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
 import { ToastrModule } from 'ngx-toastr';
 import { GuiNotificatorService } from './services/gui-notificator.service';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { GuiNotificatorService } from './services/gui-notificator.service';
     LineChartComponent,
     PolarAreaChartComponent,
     RadarChartComponent,
-    DoughnutChartComponent
+    DoughnutChartComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

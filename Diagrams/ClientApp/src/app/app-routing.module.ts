@@ -7,6 +7,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 import { PolarAreaChartComponent } from './polar-area-chart/polar-area-chart.component';
 import { RadarChartComponent } from './radar-chart/radar-chart.component';
 import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/home' },
@@ -17,7 +18,7 @@ const routes: Routes = [
   { path: 'radar-chart', component: RadarChartComponent },
   { path: 'doughnut-chart', component: DoughnutChartComponent },
   { path: 'polar-area-chart', component: PolarAreaChartComponent },
-  { path: '**', redirectTo: '/home' }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({
