@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { AsotiativeValues } from '../models/asotiative-values';
+import { TranslateService } from '@ngx-translate/core';
+import { GuiNotificatorService } from '../services/gui-notificator.service';
 
 @Component({
   selector: 'app-radar-chart',
@@ -22,7 +24,8 @@ export class RadarChartComponent implements OnInit {
   public datasetNames: string[];
   public datasetNumber = 3;
 
-  constructor() { }
+  constructor(private _translate: TranslateService,
+    private _guiNotificatorService: GuiNotificatorService) { }
 
   ngOnInit() {
     this.datasetNames = ['Set 1', 'Set 2'];
@@ -73,6 +76,11 @@ export class RadarChartComponent implements OnInit {
   }
 
   public removeRow(row: AsotiativeValues): void {
+    if (this.rows.length === 1) {
+      const message = this._translate.instant('errors.1RowRemained');
+      this._guiNotificatorService.showError(message);
+      return;
+    }
     const index = this.rows.indexOf(row);
     if (index > -1) {
        this.rows.splice(index, 1);
@@ -89,6 +97,11 @@ export class RadarChartComponent implements OnInit {
   }
 
   public removeColumn(index: number) {
+    if (this.rows[0].values.length === 1) {
+      const message = this._translate.instant('errors.1ColumnRemained');
+      this._guiNotificatorService.showError(message);
+      return;
+    }
     this.datasetNames.splice(index, 1);
     this.rows.forEach(row => {
       row.values.splice(index, 1);

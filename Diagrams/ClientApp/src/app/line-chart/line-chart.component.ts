@@ -3,6 +3,8 @@ import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import { AsotiativeValues } from '../models/asotiative-values';
+import { TranslateService } from '@ngx-translate/core';
+import { GuiNotificatorService } from '../services/gui-notificator.service';
 
 @Component({
   selector: 'app-line-chart',
@@ -35,7 +37,8 @@ export class LineChartComponent implements OnInit {
   public datasetNames: string[];
   public datasetNumber = 4;
 
-  constructor() { }
+  constructor(private _translate: TranslateService,
+    private _guiNotificatorService: GuiNotificatorService) { }
 
   ngOnInit() {
     this.datasetNames = ['Set 1', 'Set 2', 'Set 3'];
@@ -86,6 +89,11 @@ export class LineChartComponent implements OnInit {
   }
 
   public removeRow(row: AsotiativeValues): void {
+    if (this.rows.length === 1) {
+      const message = this._translate.instant('errors.1RowRemained');
+      this._guiNotificatorService.showError(message);
+      return;
+    }
     const index = this.rows.indexOf(row);
     if (index > -1) {
        this.rows.splice(index, 1);
@@ -102,6 +110,11 @@ export class LineChartComponent implements OnInit {
   }
 
   public removeColumn(index: number) {
+    if (this.rows[0].values.length === 1) {
+      const message = this._translate.instant('errors.1ColumnRemained');
+      this._guiNotificatorService.showError(message);
+      return;
+    }
     this.datasetNames.splice(index, 1);
     this.rows.forEach(row => {
       row.values.splice(index, 1);

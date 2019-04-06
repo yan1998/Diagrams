@@ -18,5 +18,15 @@
         "title": "Title",
         "value": "Value",
         "outputChart": "Output Chart"
-    }
+    },
+	"toastr": {
+		"success": "Success",
+		"error": "Error",
+		"warning": "Warning",
+		"notification": "Notification"
+	},
+	"errors": {
+		"1RowRemained": "You can't remove the row. One row must remains!",
+		"1ColumnRemained": "You can't remove the column. One column must remains!"
+	}
 }

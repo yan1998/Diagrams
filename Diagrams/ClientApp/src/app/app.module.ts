@@ -19,6 +19,8 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 import { PolarAreaChartComponent } from './polar-area-chart/polar-area-chart.component';
 import { RadarChartComponent } from './radar-chart/radar-chart.component';
 import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.component';
+import { ToastrModule } from 'ngx-toastr';
+import { GuiNotificatorService } from './services/gui-notificator.service';
 
 @NgModule({
   declarations: [
@@ -53,9 +55,16 @@ import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.componen
     MatExpansionModule,
     MatGridListModule,
     MatChipsModule,
-    MatIconModule
+    MatIconModule,
+    ToastrModule.forRoot({
+      timeOut: 5000,
+      positionClass: 'toast-bottom-right',
+      maxOpened: 3
+    })
   ],
-  providers: [],
+  providers: [
+    GuiNotificatorService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
