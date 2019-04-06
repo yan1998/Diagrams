@@ -28,7 +28,7 @@ export class PieChartComponent implements OnInit {
   public pieChartData: number[];
   public pieChartLegend = true;
   public pieChartPlugins = [pluginDataLabels];
-  
+
   public rows: TwoColumns[];
   public isExpanded = false;
 
@@ -54,8 +54,8 @@ export class PieChartComponent implements OnInit {
 
   public addRow(): void {
     const row: TwoColumns = {
-      title: null,
-      value: null
+      title: '',
+      value: 0
     };
     this.rows.push(row);
     this.exportFromTable();
