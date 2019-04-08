@@ -1,3 +1,4 @@
+using Diagrams.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,9 @@ namespace Diagrams
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddSingleton<JsonService>();
+            services.AddSingleton<XmlService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

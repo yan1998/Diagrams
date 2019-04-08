@@ -17,7 +17,9 @@
         "dataTable": "Таблица",
         "title": "Заголовок",
         "value": "Значение",
-        "outputChart": "Итоговая Диаграмма"
+        "outputChart": "Итоговая Диаграмма",
+		"downloadJson": "Загрузить JSON",
+		"downloadXml": "Загрузить XML"
     },
 	"toastr": {
 		"success": "Успех",

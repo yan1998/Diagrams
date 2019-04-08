@@ -9,3 +9,14 @@ th, h2, #addBtnRow {
 .values {
     width: 75px;
 }
+
+#downloadXmlBtn {
+    margin-left: 10px;
+}
+
+mat-spinner {
+    float: right;
+    margin-top: 8px;
+    margin-left: 8px;
+}
+

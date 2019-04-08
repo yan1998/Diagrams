@@ -11,7 +11,8 @@ import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatButtonModule, MatInputModule, MatExpansionModule, MatGridListModule, MatSelectModule } from '@angular/material';
+// tslint:disable-next-line: max-line-length
+import { MatButtonModule, MatInputModule, MatExpansionModule, MatGridListModule, MatSelectModule, MatProgressSpinnerModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
@@ -22,6 +23,9 @@ import { DoughnutChartComponent } from './doughnut-chart/doughnut-chart.componen
 import { ToastrModule } from 'ngx-toastr';
 import { GuiNotificatorService } from './services/gui-notificator.service';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { JsonService } from './services/json.service';
+import { FileDownloaderService } from './services/file-downloader.service';
+import { XmlService } from './services/xml.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +42,6 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
-    HttpClientModule,
     HttpClientModule,
     TranslateModule.forRoot({
       loader: {
@@ -58,6 +61,7 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     MatGridListModule,
     MatChipsModule,
     MatIconModule,
+    MatProgressSpinnerModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',
@@ -65,7 +69,10 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     })
   ],
   providers: [
-    GuiNotificatorService
+    GuiNotificatorService,
+    JsonService,
+    XmlService,
+    FileDownloaderService
   ],
   bootstrap: [AppComponent]
 })

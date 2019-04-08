@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { Label, MultiDataSet } from 'ng2-charts';
-import { AsotiativeValues } from '../models/asotiative-values';
+import { Label } from 'ng2-charts';
+import { AssotiativeValues } from '../models/assotiative-values';
 import { TranslateService } from '@ngx-translate/core';
 import { GuiNotificatorService } from '../services/gui-notificator.service';
+import { JsonService } from '../services/json.service';
+import { XmlService } from '../services/xml.service';
+import { FileDownloaderService } from '../services/file-downloader.service';
 
 @Component({
   selector: 'app-doughnut-chart',
@@ -15,10 +18,16 @@ export class DoughnutChartComponent implements OnInit {
   public doughnutChartData: (number[])[];
 
   public isExpanded = false;
-  public rows: AsotiativeValues[];
+  public rows: AssotiativeValues[];
+  public isJsonDownloading = false;
+  public isXmlDownloading = false;
+
 
   constructor(private _translate: TranslateService,
-    private _guiNotificatorService: GuiNotificatorService) { }
+    private _guiNotificatorService: GuiNotificatorService,
+    private _jsonService: JsonService,
+    private _xmlService: XmlService,
+    private _fileDownloaderService: FileDownloaderService) { }
 
   ngOnInit() {
     this.rows = [
@@ -51,7 +60,7 @@ export class DoughnutChartComponent implements OnInit {
     for (let i = 0; i < this.rows[0].values.length; i++) {
       values.push(0);
     }
-    const row: AsotiativeValues = {
+    const row: AssotiativeValues = {
       title: '',
       values: values
     };
@@ -59,7 +68,7 @@ export class DoughnutChartComponent implements OnInit {
     this.exportFromTable();
   }
 
-  public removeRow(row: AsotiativeValues): void {
+  public removeRow(row: AssotiativeValues): void {
     if (this.rows.length === 1) {
       const message = this._translate.instant('errors.1RowRemained');
       this._guiNotificatorService.showError(message);
@@ -103,4 +112,29 @@ export class DoughnutChartComponent implements OnInit {
     return items;
   }
 
+  public downloadJson() {
+    this.isJsonDownloading = true;
+    this._jsonService.saveAssotiativeValuesJsonFile(this.rows).subscribe(file => {
+      const date = new Date();
+      const blob = new Blob([file], { type: 'application/json' });
+      this._fileDownloaderService.downloadBlob(blob, `DoughnutChart-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}.json`);
+      this.isJsonDownloading = false;
+    }, (error) => {
+      this._guiNotificatorService.showError('Server Error!');
+      this.isJsonDownloading = false;
+    });
+  }
+
+  public downloadXml() {
+    this.isXmlDownloading = true;
+    this._xmlService.saveAssotiativeValuesXmlFile(this.rows).subscribe(file => {
+      const date = new Date();
+      const blob = new Blob([file], { type: 'application/xml' });
+      this._fileDownloaderService.downloadBlob(blob, `DoughnutChart-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}.xml`);
+      this.isXmlDownloading = false;
+    }, (error) => {
+      this._guiNotificatorService.showError('Server Error!');
+      this.isXmlDownloading = false;
+    });
+  }
 }
