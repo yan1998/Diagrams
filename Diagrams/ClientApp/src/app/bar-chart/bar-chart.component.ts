@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { AsotiativeValues } from '../models/asotiative-values';
+import { AssotiativeValues } from '../models/assotiative-values';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { ChartOptions, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { TranslateService } from '@ngx-translate/core';
 import { GuiNotificatorService } from '../services/gui-notificator.service';
+import { JsonService } from '../services/json.service';
+import { FileDownloaderService } from '../services/file-downloader.service';
+import { XmlService } from '../services/xml.service';
 
 @Component({
   selector: 'app-bar-chart',
@@ -31,12 +34,17 @@ export class BarChartComponent implements OnInit {
   public barChartData: ChartDataSets[];
 
   public isExpanded = false;
-  public rows: AsotiativeValues[];
+  public rows: AssotiativeValues[];
   public datasetNames: string[];
   public datasetNumber = 3;
+  public isJsonDownloading = false;
+  public isXmlDownloading = false;
 
   constructor(private _translate: TranslateService,
-    private _guiNotificatorService: GuiNotificatorService) { }
+    private _guiNotificatorService: GuiNotificatorService,
+    private _jsonService: JsonService,
+    private _xmlService: XmlService,
+    private _fileDownloaderService: FileDownloaderService) { }
 
   ngOnInit() {
     this.datasetNames = ['Set 1', 'Set 2'];
@@ -78,7 +86,7 @@ export class BarChartComponent implements OnInit {
     for (let i = 0; i < this.datasetNames.length; i++) {
       values[i] = 0;
     }
-    const row: AsotiativeValues = {
+    const row: AssotiativeValues = {
       title: null,
       values: values
     };
@@ -86,7 +94,7 @@ export class BarChartComponent implements OnInit {
     this.exportFromTable();
   }
 
-  public removeRow(row: AsotiativeValues): void {
+  public removeRow(row: AssotiativeValues): void {
     if (this.rows.length === 1) {
       const message = this._translate.instant('errors.1RowRemained');
       this._guiNotificatorService.showError(message);
@@ -123,4 +131,31 @@ export class BarChartComponent implements OnInit {
   public onKey(event: any): void {
     this.exportFromTable();
   }
+
+  public downloadJson() {
+    this.isJsonDownloading = true;
+    this._jsonService.saveAssotiativeValuesJsonFile(this.rows).subscribe(file => {
+      const date = new Date();
+      const blob = new Blob([file], { type: 'application/json' });
+      this._fileDownloaderService.downloadBlob(blob, `BarChart-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}.json`);
+      this.isJsonDownloading = false;
+    }, (error) => {
+      this._guiNotificatorService.showError('Server Error!');
+      this.isJsonDownloading = false;
+    });
+  }
+
+  public downloadXml() {
+    this.isXmlDownloading = true;
+    this._xmlService.saveAssotiativeValuesXmlFile(this.rows).subscribe(file => {
+      const date = new Date();
+      const blob = new Blob([file], { type: 'application/xml' });
+      this._fileDownloaderService.downloadBlob(blob, `BarChart-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}.xml`);
+      this.isXmlDownloading = false;
+    }, (error) => {
+      this._guiNotificatorService.showError('Server Error!');
+      this.isXmlDownloading = false;
+    });
+  }
+
 }

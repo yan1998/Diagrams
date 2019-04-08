@@ -39,6 +39,10 @@
             </tr>
           </tfoot>
         </table>
+        <div id="downloadBtns">
+          <button id="downloadJsonBtn" [disabled]="isJsonDownloading" mat-stroked-button (click)="downloadJson()">{{ ('shared.downloadJson' | translate) || 'Download JSON' }} <mat-spinner [diameter]="20" *ngIf="isJsonDownloading"></mat-spinner></button>
+          <button id="downloadXmlBtn" [disabled]="isXmlDownloading" mat-stroked-button (click)="downloadXml()">{{ ('shared.downloadXml' | translate) || 'Download XML' }} <mat-spinner [diameter]="20" *ngIf="isXmlDownloading"></mat-spinner></button>
+        </div>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

@@ -17,7 +17,9 @@
         "dataTable": "Data Table",
         "title": "Title",
         "value": "Value",
-        "outputChart": "Output Chart"
+        "outputChart": "Output Chart",
+		"downloadJson": "Download JSON",
+		"downloadXml": "Download XML"
     },
 	"toastr": {
 		"success": "Success",

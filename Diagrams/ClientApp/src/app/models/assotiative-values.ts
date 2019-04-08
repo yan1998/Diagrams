@@ -1,4 +1,4 @@
-export class AsotiativeValues {
+export class AssotiativeValues {
     title: string;
     values: number[];
 }

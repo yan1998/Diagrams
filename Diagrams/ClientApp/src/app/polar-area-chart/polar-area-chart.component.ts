@@ -3,6 +3,9 @@ import { Label } from 'ng2-charts';
 import { TwoColumns } from '../models/two-columns';
 import { TranslateService } from '@ngx-translate/core';
 import { GuiNotificatorService } from '../services/gui-notificator.service';
+import { JsonService } from '../services/json.service';
+import { XmlService } from '../services/xml.service';
+import { FileDownloaderService } from '../services/file-downloader.service';
 
 @Component({
   selector: 'app-polar-area-chart',
@@ -17,9 +20,14 @@ export class PolarAreaChartComponent implements OnInit {
 
   public rows: TwoColumns[];
   public isExpanded = false;
+  public isJsonDownloading = false;
+  public isXmlDownloading = false;
 
   constructor(private _translate: TranslateService,
-    private _guiNotificatorService: GuiNotificatorService) { }
+    private _guiNotificatorService: GuiNotificatorService,
+    private _jsonService: JsonService,
+    private _xmlService: XmlService,
+    private _fileDownloaderService: FileDownloaderService) { }
 
   ngOnInit() {
     this.rows = [
@@ -65,6 +73,32 @@ export class PolarAreaChartComponent implements OnInit {
 
   public onKey(event: any): void {
     this.exportFromTable();
+  }
+
+  public downloadJson() {
+    this.isJsonDownloading = true;
+    this._jsonService.saveTwoColumnsJsonFile(this.rows).subscribe(file => {
+      const date = new Date();
+      const blob = new Blob([file], { type: 'application/json' });
+      this._fileDownloaderService.downloadBlob(blob, `PolarAreaChart-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}.json`);
+      this.isJsonDownloading = false;
+    }, (error) => {
+      this._guiNotificatorService.showError('Server Error!');
+      this.isJsonDownloading = false;
+    });
+  }
+
+  public downloadXml() {
+    this.isXmlDownloading = true;
+    this._xmlService.saveTwoColumnsXmlFile(this.rows).subscribe(file => {
+      const date = new Date();
+      const blob = new Blob([file], { type: 'application/xml' });
+      this._fileDownloaderService.downloadBlob(blob, `PolarAreaChart-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}.xml`);
+      this.isXmlDownloading = false;
+    }, (error) => {
+      this._guiNotificatorService.showError('Server Error!');
+      this.isXmlDownloading = false;
+    });
   }
 
 }

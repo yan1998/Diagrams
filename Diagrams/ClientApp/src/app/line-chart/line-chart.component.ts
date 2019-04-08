@@ -2,9 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Color, Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
-import { AsotiativeValues } from '../models/asotiative-values';
+import { AssotiativeValues } from '../models/assotiative-values';
 import { TranslateService } from '@ngx-translate/core';
 import { GuiNotificatorService } from '../services/gui-notificator.service';
+import { JsonService } from '../services/json.service';
+import { XmlService } from '../services/xml.service';
+import { FileDownloaderService } from '../services/file-downloader.service';
 
 @Component({
   selector: 'app-line-chart',
@@ -33,11 +36,16 @@ export class LineChartComponent implements OnInit {
   public lineChartPlugins = [pluginAnnotations];
 
   public isExpanded = false;
-  public rows: AsotiativeValues[];
+  public rows: AssotiativeValues[];
   public datasetNames: string[];
   public datasetNumber = 4;
+  public isJsonDownloading = false;
+  public isXmlDownloading = false;
 
   constructor(private _translate: TranslateService,
+    private _jsonService: JsonService,
+    private _xmlService: XmlService,
+    private _fileDownloaderService: FileDownloaderService,
     private _guiNotificatorService: GuiNotificatorService) { }
 
   ngOnInit() {
@@ -80,7 +88,7 @@ export class LineChartComponent implements OnInit {
     for (let i = 0; i < this.datasetNames.length; i++) {
       values[i] = 0;
     }
-    const row: AsotiativeValues = {
+    const row: AssotiativeValues = {
       title: null,
       values: values
     };
@@ -88,7 +96,7 @@ export class LineChartComponent implements OnInit {
     this.exportFromTable();
   }
 
-  public removeRow(row: AsotiativeValues): void {
+  public removeRow(row: AssotiativeValues): void {
     if (this.rows.length === 1) {
       const message = this._translate.instant('errors.1RowRemained');
       this._guiNotificatorService.showError(message);
@@ -125,4 +133,31 @@ export class LineChartComponent implements OnInit {
   public onKey(event: any): void {
     this.exportFromTable();
   }
+
+  public downloadJson() {
+    this.isJsonDownloading = true;
+    this._jsonService.saveAssotiativeValuesJsonFile(this.rows).subscribe(file => {
+      const date = new Date();
+      const blob = new Blob([file], { type: 'application/json' });
+      this._fileDownloaderService.downloadBlob(blob, `LineChart-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}.json`);
+      this.isJsonDownloading = false;
+    }, (error) => {
+      this._guiNotificatorService.showError('Server Error!');
+      this.isJsonDownloading = false;
+    });
+  }
+
+  public downloadXml() {
+    this.isXmlDownloading = true;
+    this._xmlService.saveAssotiativeValuesXmlFile(this.rows).subscribe(file => {
+      const date = new Date();
+      const blob = new Blob([file], { type: 'application/xml' });
+      this._fileDownloaderService.downloadBlob(blob, `LineChart-${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}.xml`);
+      this.isXmlDownloading = false;
+    }, (error) => {
+      this._guiNotificatorService.showError('Server Error!');
+      this.isXmlDownloading = false;
+    });
+  }
+
 }
