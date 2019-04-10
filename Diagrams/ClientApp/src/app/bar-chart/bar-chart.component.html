@@ -49,10 +49,22 @@
         <div id="addBtnRow">
           <button mat-mini-fab [color]="'primary'" (click)="addRow()"><i class="material-icons">add</i></button>
         </div>
-        <div id="downloadBtns">
-          <button id="downloadJsonBtn" [disabled]="isJsonDownloading" mat-stroked-button (click)="downloadJson()">{{ ('shared.downloadJson' | translate) || 'Download JSON' }} <mat-spinner [diameter]="20" *ngIf="isJsonDownloading"></mat-spinner></button>
-          <button id="downloadXmlBtn" [disabled]="isXmlDownloading" mat-stroked-button (click)="downloadXml()">{{ ('shared.downloadXml' | translate) || 'Download XML' }} <mat-spinner [diameter]="20" *ngIf="isXmlDownloading"></mat-spinner></button>
-        </div>
+        <mat-tab-group mat-align-tabs="center">
+          <mat-tab label="{{('shared.upload' | translate) || 'Upload'}}">
+            <div class="loadBtns">
+              <button id="uploadJsonBtn" [disabled]="isFileUploading" mat-stroked-button (click)="jsonFileInput.click()">{{ ('shared.uploadJson' | translate) || 'Upload JSON' }} <mat-spinner [diameter]="20" *ngIf="isJsonUploading"></mat-spinner></button>
+              <input id="jsonFile" [style.display]="'none'" name="jsonFile" type="file" accept=".json" #jsonFileInput (change)="uploadJsonFile(jsonFileInput.files)">
+              <button id="uploadXmlBtn" [disabled]="isFileUploading" mat-stroked-button (click)="xmlFileInput.click()">{{ ('shared.uploadXml' | translate) || 'Upload XML' }} <mat-spinner [diameter]="20" *ngIf="isXmlUploading"></mat-spinner></button>
+              <input id="xmlFile" [style.display]="'none'" name="xmlFile" type="file" accept=".xml" #xmlFileInput (change)="uploadXmlFile(xmlFileInput.files)">
+            </div>
+          </mat-tab>
+          <mat-tab label="{{('shared.download' | translate) || 'Download'}}">
+            <div class="loadBtns">
+              <button id="downloadJsonBtn" [disabled]="isJsonDownloading" mat-stroked-button (click)="downloadJson()">{{ ('shared.downloadJson' | translate) || 'Download JSON' }} <mat-spinner [diameter]="20" *ngIf="isJsonDownloading"></mat-spinner></button>
+              <button id="downloadXmlBtn" [disabled]="isXmlDownloading" mat-stroked-button (click)="downloadXml()">{{ ('shared.downloadXml' | translate) || 'Download XML' }} <mat-spinner [diameter]="20" *ngIf="isXmlDownloading"></mat-spinner></button>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
       </mat-expansion-panel>
     </mat-accordion>
   </div>

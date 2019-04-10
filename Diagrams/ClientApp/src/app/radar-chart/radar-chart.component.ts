@@ -121,6 +121,46 @@ export class RadarChartComponent implements OnInit {
     this.exportFromTable();
   }
 
+  public uploadJsonFile(files: File[]) {
+    if (files.length === 0) {
+      return;
+    }
+
+    const fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    this._jsonService.uploadAssotiativeValuesJson(formData).subscribe((response: AssotiativeValues[]) => {
+      this.rows = response;
+      this.resetDataSetNumber(response[0].values);
+      this.exportFromTable();
+    });
+  }
+
+  public uploadXmlFile(files: File[]) {
+    if (files.length === 0) {
+      return;
+    }
+
+    const fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    this._xmlService.uploadAssotiativeValueXml(formData).subscribe((response: AssotiativeValues[]) => {
+      this.rows = response;
+      this.resetDataSetNumber(response[0].values);
+      this.exportFromTable();
+    });
+  }
+
+  private resetDataSetNumber(values: number[]): void {
+    this.datasetNames = [];
+    this.datasetNumber = values.length + 1;
+    for (let i = 0; i < values.length; i++) {
+      this.datasetNames.push(`Set ${i + 1}`);
+    }
+  }
+
   public downloadJson() {
     this.isJsonDownloading = true;
     this._jsonService.saveAssotiativeValuesJsonFile(this.rows).subscribe(file => {

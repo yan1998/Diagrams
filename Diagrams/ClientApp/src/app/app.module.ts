@@ -12,7 +12,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { PieChartComponent } from './pie-chart/pie-chart.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // tslint:disable-next-line: max-line-length
-import { MatButtonModule, MatInputModule, MatExpansionModule, MatGridListModule, MatSelectModule, MatProgressSpinnerModule } from '@angular/material';
+import { MatButtonModule, MatInputModule, MatExpansionModule, MatGridListModule, MatSelectModule, MatProgressSpinnerModule, MatTabsModule } from '@angular/material';
 import { MatIconModule } from '@angular/material/icon';
 import { MatChipsModule } from '@angular/material/chips';
 import { BarChartComponent } from './bar-chart/bar-chart.component';
@@ -62,6 +62,7 @@ import { XmlService } from './services/xml.service';
     MatChipsModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    MatTabsModule,
     ToastrModule.forRoot({
       timeOut: 5000,
       positionClass: 'toast-bottom-right',

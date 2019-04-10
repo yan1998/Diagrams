@@ -89,6 +89,36 @@ export class PieChartComponent implements OnInit {
     this.exportFromTable();
   }
 
+  public uploadJsonFile(files: File[]) {
+    if (files.length === 0) {
+      return;
+    }
+
+    const fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    this._jsonService.uploadTwoColumnsJson(formData).subscribe((response: TwoColumns[]) => {
+      this.rows = response;
+      this.exportFromTable();
+    });
+  }
+
+  public uploadXmlFile(files: File[]) {
+    if (files.length === 0) {
+      return;
+    }
+
+    const fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    this._xmlService.uploadTwoColumnsXml(formData).subscribe((response: TwoColumns[]) => {
+      this.rows = response;
+      this.exportFromTable();
+    });
+  }
+
   public downloadJson() {
     this.isJsonDownloading = true;
     this._jsonService.saveTwoColumnsJsonFile(this.rows).subscribe(file => {

@@ -19,7 +19,11 @@
         "value": "Value",
         "outputChart": "Output Chart",
 		"downloadJson": "Download JSON",
-		"downloadXml": "Download XML"
+		"downloadXml": "Download XML",
+		"uploadJson": "Upload JSON",
+		"uploadXml": "Upload XML",
+		"download": "Download",
+		"upload": "Upload"
     },
 	"toastr": {
 		"success": "Success",

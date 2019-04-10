@@ -30,6 +30,7 @@ namespace Diagrams
 
             services.AddSingleton<JsonService>();
             services.AddSingleton<XmlService>();
+            services.AddSingleton<HelperService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

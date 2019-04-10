@@ -112,6 +112,36 @@ export class DoughnutChartComponent implements OnInit {
     return items;
   }
 
+  public uploadJsonFile(files: File[]) {
+    if (files.length === 0) {
+      return;
+    }
+
+    const fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    this._jsonService.uploadAssotiativeValuesJson(formData).subscribe((response: AssotiativeValues[]) => {
+      this.rows = response;
+      this.exportFromTable();
+    });
+  }
+
+  public uploadXmlFile(files: File[]) {
+    if (files.length === 0) {
+      return;
+    }
+
+    const fileToUpload = <File>files[0];
+    const formData = new FormData();
+    formData.append('file', fileToUpload, fileToUpload.name);
+
+    this._xmlService.uploadAssotiativeValueXml(formData).subscribe((response: AssotiativeValues[]) => {
+      this.rows = response;
+      this.exportFromTable();
+    });
+  }
+
   public downloadJson() {
     this.isJsonDownloading = true;
     this._jsonService.saveAssotiativeValuesJsonFile(this.rows).subscribe(file => {
