@@ -21,4 +21,13 @@ export class XmlService {
     return this._httpClient.post(href, request, { responseType: 'blob' });
   }
 
+  uploadTwoColumnsXml(formData: FormData): Observable<TwoColumns[]> {
+    const href = '../api/twoColumns/UploadXmlFile';
+    return this._httpClient.post<TwoColumns[]>(href, formData);
+  }
+
+  uploadAssotiativeValueXml(formData: FormData): Observable<AssotiativeValues[]> {
+    const href = '../api/assotiativeValues/UploadXmlFile';
+    return this._httpClient.post<AssotiativeValues[]>(href, formData);
+  }
 }

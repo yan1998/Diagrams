@@ -18,8 +18,12 @@
         "title": "Заголовок",
         "value": "Значение",
         "outputChart": "Итоговая Диаграмма",
-		"downloadJson": "Загрузить JSON",
-		"downloadXml": "Загрузить XML"
+		"downloadJson": "Скачать JSON",
+		"downloadXml": "Скачать XML",
+		"uploadJson": "Загрузить JSON",
+		"uploadXml": "Загрузить XML",
+		"download": "Скачать",
+		"upload": "Загрузить"
     },
 	"toastr": {
 		"success": "Успех",

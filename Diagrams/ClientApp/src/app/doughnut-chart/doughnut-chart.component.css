@@ -2,8 +2,13 @@ th, h2, #addBtnRow {
     text-align: center;
 }
 
-.removeColumnBtn, #downloadXmlBtn{
+.removeColumnBtn, #downloadXmlBtn, #uploadXmlBtn {
     margin-left: 10px; 
+}
+
+.loadBtns {
+    margin-top: 15px;
+    text-align: center;
 }
 
 #dataTable {

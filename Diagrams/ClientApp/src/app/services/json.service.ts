@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
 import { TwoColumns } from '../models/two-columns';
 import { AssotiativeValues } from '../models/assotiative-values';
 
@@ -19,6 +19,16 @@ export class JsonService {
   saveAssotiativeValuesJsonFile(request: AssotiativeValues[]): Observable<Blob> {
     const href = '../api/assotiativeValues/SaveJsonFile';
     return this._httpClient.post(href, request, { responseType: 'blob' });
+  }
+
+  uploadTwoColumnsJson(formData: FormData): Observable<TwoColumns[]> {
+    const href = '../api/twoColumns/UploadJsonFile';
+    return this._httpClient.post<TwoColumns[]>(href, formData);
+  }
+
+  uploadAssotiativeValuesJson(formData: FormData): Observable<AssotiativeValues[]> {
+    const href = '../api/assotiativeValues/UploadJsonFile';
+    return this._httpClient.post<AssotiativeValues[]>(href, formData);
   }
 
 }

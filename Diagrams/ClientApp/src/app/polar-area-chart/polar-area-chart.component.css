@@ -10,7 +10,12 @@ th, h2, #addBtnRow {
     width: 75px;
 }
 
-#downloadXmlBtn {
+.loadBtns {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#downloadXmlBtn, #uploadXmlBtn {
     margin-left: 10px;
 }
 
