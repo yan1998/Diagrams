@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { TwoColumns } from '../models/two-columns';
 import { Observable } from 'rxjs';
-import { AssotiativeValues } from '../models/assotiative-values';
+import { AssotiativeValuesTable } from '../models/assotiative-values';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -16,7 +16,7 @@ export class XmlService {
     return this._httpClient.post(href, request, { responseType: 'blob' });
   }
 
-  saveAssotiativeValuesXmlFile(request: AssotiativeValues[]): Observable<Blob> {
+  saveAssotiativeValuesXmlFile(request: AssotiativeValuesTable): Observable<Blob> {
     const href = '../api/assotiativeValues/SaveXmlFile';
     return this._httpClient.post(href, request, { responseType: 'blob' });
   }
@@ -26,8 +26,8 @@ export class XmlService {
     return this._httpClient.post<TwoColumns[]>(href, formData);
   }
 
-  uploadAssotiativeValueXml(formData: FormData): Observable<AssotiativeValues[]> {
+  uploadAssotiativeValueXml(formData: FormData): Observable<AssotiativeValuesTable> {
     const href = '../api/assotiativeValues/UploadXmlFile';
-    return this._httpClient.post<AssotiativeValues[]>(href, formData);
+    return this._httpClient.post<AssotiativeValuesTable>(href, formData);
   }
 }

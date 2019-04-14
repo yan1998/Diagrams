@@ -17,9 +17,9 @@ namespace Diagrams.Services
             return result;
         }
 
-        public AssotiativeValues[] DeserializeAssotiativeValuesArray(string json)
+        public AssotiativeValuesTable DeserializeAssotiativeValuesTableArray(string json)
         {
-            AssotiativeValues[] result = JsonConvert.DeserializeObject<AssotiativeValues[]>(json);
+            AssotiativeValuesTable result = JsonConvert.DeserializeObject<AssotiativeValuesTable>(json);
             return result;
         }
     }

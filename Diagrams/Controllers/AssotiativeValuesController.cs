@@ -19,7 +19,7 @@ namespace Diagrams.Controllers
         }
 
         [HttpPost("SaveJsonFile")]
-        public ContentResult Index([FromBody]AssotiativeValues[] request)
+        public ContentResult Index([FromBody]AssotiativeValuesTable request)
         {
             string jsonString = this._jsonService.SerializeToJson(request);
             ContentResult result = new ContentResult();
@@ -30,15 +30,15 @@ namespace Diagrams.Controllers
         }
 
         [HttpPost("UploadJsonFile"), DisableRequestSizeLimit]
-        public AssotiativeValues[] UploadJsonFile()
+        public AssotiativeValuesTable UploadJsonFile()
         {
             string str = this._helperService.ConvertStreamToString(Request.Form.Files[0].OpenReadStream());
-            AssotiativeValues[] result = this._jsonService.DeserializeAssotiativeValuesArray(str);
+            AssotiativeValuesTable result = this._jsonService.DeserializeAssotiativeValuesTableArray(str);
             return result;
         }
 
         [HttpPost("SaveXmlFile")]
-        public ContentResult SaveXmlFile([FromBody]AssotiativeValues[] request)
+        public ContentResult SaveXmlFile([FromBody]AssotiativeValuesTable request)
         {
             string xmlString = this._xmlService.SerializeToXml(request);
             ContentResult result = new ContentResult();
@@ -49,10 +49,10 @@ namespace Diagrams.Controllers
         }
 
         [HttpPost("UploadXmlFile"), DisableRequestSizeLimit]
-        public AssotiativeValues[] UploadXmlFile()
+        public AssotiativeValuesTable UploadXmlFile()
         {
             string str = this._helperService.ConvertStreamToString(Request.Form.Files[0].OpenReadStream());
-            AssotiativeValues[] result = this._xmlService.DeserializeAssotiativeValuesArray(str);
+            AssotiativeValuesTable result = this._xmlService.DeserializeAssotiativeValuesTableArray(str);
             return result;
         }
     }

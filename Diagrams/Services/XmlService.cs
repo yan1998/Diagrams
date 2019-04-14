@@ -29,13 +29,13 @@ namespace Diagrams.Services
             return result;
         }
 
-        public AssotiativeValues[] DeserializeAssotiativeValuesArray(string xml)
+        public AssotiativeValuesTable DeserializeAssotiativeValuesTableArray(string xml)
         {
-            AssotiativeValues[] result;
+            AssotiativeValuesTable result;
             using (StringReader stringReader = new StringReader(xml))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(AssotiativeValues[]));
-                result = (AssotiativeValues[])serializer.Deserialize(stringReader);
+                XmlSerializer serializer = new XmlSerializer(typeof(AssotiativeValuesTable));
+                result = (AssotiativeValuesTable)serializer.Deserialize(stringReader);
             };
             return result;
         }
