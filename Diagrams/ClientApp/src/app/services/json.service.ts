@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { HttpClient, HttpHeaderResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { TwoColumns } from '../models/two-columns';
-import { AssotiativeValues } from '../models/assotiative-values';
+import { AssotiativeValuesTable } from '../models/assotiative-values';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +16,7 @@ export class JsonService {
     return this._httpClient.post(href, request, { responseType: 'blob' });
   }
 
-  saveAssotiativeValuesJsonFile(request: AssotiativeValues[]): Observable<Blob> {
+  saveAssotiativeValuesJsonFile(request: AssotiativeValuesTable): Observable<Blob> {
     const href = '../api/assotiativeValues/SaveJsonFile';
     return this._httpClient.post(href, request, { responseType: 'blob' });
   }
@@ -26,9 +26,9 @@ export class JsonService {
     return this._httpClient.post<TwoColumns[]>(href, formData);
   }
 
-  uploadAssotiativeValuesJson(formData: FormData): Observable<AssotiativeValues[]> {
+  uploadAssotiativeValuesJson(formData: FormData): Observable<AssotiativeValuesTable> {
     const href = '../api/assotiativeValues/UploadJsonFile';
-    return this._httpClient.post<AssotiativeValues[]>(href, formData);
+    return this._httpClient.post<AssotiativeValuesTable>(href, formData);
   }
 
 }

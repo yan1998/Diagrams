@@ -1,0 +1,30 @@
+th, #addBtnRow {
+    text-align: center;
+}
+
+.titles {
+    width: 145px;
+}
+
+.values {
+    width: 75px;
+}
+
+.loadBtns {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#downloadXmlBtn, #uploadXmlBtn {
+    margin-left: 10px;
+}
+
+mat-spinner {
+    float: right;
+    margin-top: 8px;
+    margin-left: 8px;
+}
+
+.table {
+    margin-bottom: 0px;
+}

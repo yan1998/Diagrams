@@ -1,68 +1,6 @@
 <div class="row top">
   <div class="col-lg-12 col-md-12 col-sm-12">
-    <mat-accordion>
-      <mat-expansion-panel [expanded]='isExpanded'>
-        <mat-expansion-panel-header (click)="isExpanded = !isExpanded">
-          <span *ngIf="isExpanded">{{ ('shared.hideDataTable' | translate) || 'Hide data table' }}</span>
-          <span *ngIf="!isExpanded">{{ ('shared.showDataTable' | translate) || 'Show data table' }}</span>
-        </mat-expansion-panel-header>
-        
-        <div id="dataTable">
-          <table class="table table-striped">
-            <thead>
-              <tr>
-                <td></td>
-                <td *ngFor="let datasetName of datasetNames;index as i;">
-                  <label class="labels">{{ datasetNames[i] }} </label>
-                  <button mat-mini-fab [color]="'warn'" class="removeColumnBtn" (click)="removeColumn(i)">
-                    <i class="material-icons">remove</i>
-                  </button>
-                </td>
-                <td>
-                  <button mat-mini-fab [color]="'primary'" (click)="addColumn()"><i class="material-icons">add</i></button>
-                </td>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let row of rows">
-                <td>
-                  <mat-form-field class="titles">
-                    <input type="text" matInput placeholder="{{ ('shared.title' | translate) || 'Title' }}" (keyup)="onKey($event)" [(ngModel)]="row.title">
-                  </mat-form-field>
-                </td>
-                <td *ngFor="let datasetName of datasetNames;index as i;">
-                  <mat-form-field class="values">
-                    <input type="number" min="0" matInput placeholder="{{datasetName}}" (change)="onKey($event)" (keyup)="onKey($event)" [(ngModel)]="row.values[i]">
-                  </mat-form-field>
-                </td>
-                <td>
-                  <button mat-mini-fab [color]="'warn'" (click)="removeRow(row)"><i class="material-icons">remove</i></button>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div id="addBtnRow">
-          <button mat-mini-fab [color]="'primary'" (click)="addRow()"><i class="material-icons">add</i></button>
-        </div>
-        <mat-tab-group mat-align-tabs="center">
-          <mat-tab label="{{('shared.upload' | translate) || 'Upload'}}">
-            <div class="loadBtns">
-              <button id="uploadJsonBtn" [disabled]="isFileUploading" mat-stroked-button (click)="jsonFileInput.click()">{{ ('shared.uploadJson' | translate) || 'Upload JSON' }} <mat-spinner [diameter]="20" *ngIf="isJsonUploading"></mat-spinner></button>
-              <input id="jsonFile" [style.display]="'none'" name="jsonFile" type="file" accept=".json" #jsonFileInput (change)="uploadJsonFile(jsonFileInput.files)">
-              <button id="uploadXmlBtn" [disabled]="isFileUploading" mat-stroked-button (click)="xmlFileInput.click()">{{ ('shared.uploadXml' | translate) || 'Upload XML' }} <mat-spinner [diameter]="20" *ngIf="isXmlUploading"></mat-spinner></button>
-              <input id="xmlFile" [style.display]="'none'" name="xmlFile" type="file" accept=".xml" #xmlFileInput (change)="uploadXmlFile(xmlFileInput.files)">
-            </div>
-          </mat-tab>
-          <mat-tab label="{{('shared.download' | translate) || 'Download'}}">
-            <div class="loadBtns">
-              <button id="downloadJsonBtn" [disabled]="isJsonDownloading" mat-stroked-button (click)="downloadJson()">{{ ('shared.downloadJson' | translate) || 'Download JSON' }} <mat-spinner [diameter]="20" *ngIf="isJsonDownloading"></mat-spinner></button>
-              <button id="downloadXmlBtn" [disabled]="isXmlDownloading" mat-stroked-button (click)="downloadXml()">{{ ('shared.downloadXml' | translate) || 'Download XML' }} <mat-spinner [diameter]="20" *ngIf="isXmlDownloading"></mat-spinner></button>
-            </div>
-          </mat-tab>
-        </mat-tab-group>
-      </mat-expansion-panel>
-    </mat-accordion>
+    <app-assotiative-values-table [table]="table" [chartName]="'RadarChart'" (tableChanged)="exportFromTable($event)"></app-assotiative-values-table>
   </div>
 </div>
 

@@ -1,0 +1,22 @@
+th, #addBtnRow {
+    text-align: center;
+}
+
+.removeColumnBtn, #downloadXmlBtn, #uploadXmlBtn {
+    margin-left: 10px; 
+}
+
+.loadBtns {
+    margin-top: 15px;
+    text-align: center;
+}
+
+#dataTable {
+    overflow-x: auto;
+}
+
+mat-spinner {
+    float: right;
+    margin-top: 8px;
+    margin-left: 8px;
+}

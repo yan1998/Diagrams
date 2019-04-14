@@ -26,6 +26,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { JsonService } from './services/json.service';
 import { FileDownloaderService } from './services/file-downloader.service';
 import { XmlService } from './services/xml.service';
+import { TwoColumnsTableComponent } from './tables/two-columns-table/two-columns-table.component';
+import { AssotiativeValuesTableComponent } from './tables/assotiative-values-table/assotiative-values-table.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +40,9 @@ import { XmlService } from './services/xml.service';
     PolarAreaChartComponent,
     RadarChartComponent,
     DoughnutChartComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    TwoColumnsTableComponent,
+    AssotiativeValuesTableComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),
