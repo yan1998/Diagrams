@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ChartOptions } from 'chart.js';
-import { Label, SingleDataSet } from 'ng2-charts';
+import { Label } from 'ng2-charts';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { TwoColumns } from '../models/two-columns';
+import { DiagramsDataService } from '../services/diagrams-data.service';
 
 @Component({
   selector: 'app-pie-chart',
@@ -30,14 +31,10 @@ export class PieChartComponent implements OnInit {
   public pieChartPlugins = [pluginDataLabels];
   public table: TwoColumns[];
 
-  constructor() { }
+  constructor(private _diagramsDataService: DiagramsDataService) { }
 
   ngOnInit() {
-    this.table = [
-      { title: 'Sales', value: 30 },
-      { title: 'In-Store Sales', value: 50 },
-      { title: 'Mail Sales', value: 10 }
-    ];
+    this.table = this._diagramsDataService.pieChartData;
     this.exportFromTable(this.table);
   }
 

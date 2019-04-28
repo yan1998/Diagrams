@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChartOptions, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { AssotiativeValuesTable } from '../models/assotiative-values';
+import { DiagramsDataService } from '../services/diagrams-data.service';
 
 @Component({
   selector: 'app-radar-chart',
@@ -17,19 +18,10 @@ export class RadarChartComponent implements OnInit {
   public radarChartData: ChartDataSets[];
   public table: AssotiativeValuesTable;
 
-  constructor() { }
+  constructor(private _diagramsDataService: DiagramsDataService) { }
 
   ngOnInit() {
-    this.table = {
-      setNames: ['Set 1', 'Set 2'],
-      rows: [
-        { title: 'Eating', values: [65, 28]},
-        { title: 'Drinking', values: [59, 48]},
-        { title: 'Sleeping', values: [80, 40]},
-        { title: 'Designing', values: [81, 19]},
-        { title: 'Coding', values: [56, 86]},
-      ]
-    };
+    this.table = this._diagramsDataService.radarChartData;
     this.exportFromTable(this.table);
   }
 

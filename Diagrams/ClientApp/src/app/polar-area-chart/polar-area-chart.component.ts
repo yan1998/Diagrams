@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Label } from 'ng2-charts';
 import { TwoColumns } from '../models/two-columns';
+import { DiagramsDataService } from '../services/diagrams-data.service';
 
 @Component({
   selector: 'app-polar-area-chart',
@@ -14,16 +15,10 @@ export class PolarAreaChartComponent implements OnInit {
   public polarAreaLegend = true;
   public table: TwoColumns[];
 
-  constructor() { }
+  constructor(private _diagramsDataService: DiagramsDataService) { }
 
   ngOnInit() {
-    this.table = [
-      { title: 'Download Sales', value: 300 },
-      { title: 'In-Store Sales', value: 500 },
-      { title: 'Mail Sales', value: 100 },
-      { title: 'Telesales', value: 40 },
-      { title: 'Corporate Sales', value: 120 }
-    ];
+    this.table = this._diagramsDataService.polarAreaChartData;
     this.exportFromTable(this.table);
   }
 
