@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Label } from 'ng2-charts';
 import { AssotiativeValuesTable } from '../models/assotiative-values';
+import { DiagramsDataService } from '../services/diagrams-data.service';
 
 @Component({
   selector: 'app-doughnut-chart',
@@ -13,17 +14,10 @@ export class DoughnutChartComponent implements OnInit {
   public doughnutChartData: (number[])[];
   public table: AssotiativeValuesTable;
 
-  constructor() { }
+  constructor(private _diagramsDataService: DiagramsDataService) { }
 
   ngOnInit() {
-    this.table = {
-      setNames: ['Set1', 'Set2', 'Set3'],
-      rows: [
-        { title: 'Download Sales', values: [350, 50, 150]},
-        { title: 'In-Store Sales', values: [150, 250, 120]},
-        { title: 'Mail-Order Sales', values: [250, 130, 70]}
-      ]
-    };
+    this.table = this._diagramsDataService.doughnutChartData;
     this.exportFromTable(this.table);
   }
 

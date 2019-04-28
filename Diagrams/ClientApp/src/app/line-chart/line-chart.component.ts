@@ -3,6 +3,7 @@ import { ChartDataSets, ChartOptions } from 'chart.js';
 import { Label } from 'ng2-charts';
 import * as pluginAnnotations from 'chartjs-plugin-annotation';
 import { AssotiativeValuesTable } from '../models/assotiative-values';
+import { DiagramsDataService } from '../services/diagrams-data.service';
 
 @Component({
   selector: 'app-line-chart',
@@ -31,19 +32,10 @@ export class LineChartComponent implements OnInit {
   public lineChartPlugins = [pluginAnnotations];
   public table: AssotiativeValuesTable;
 
-  constructor() { }
+  constructor(private _diagramsDataService: DiagramsDataService) { }
 
   ngOnInit() {
-    this.table = {
-      setNames: ['Set 1', 'Set 2', 'Set 3'],
-      rows: [
-        { title: 'January', values: [65, 28, 30]},
-        { title: 'February', values: [59, 48, 80]},
-        { title: 'March', values: [80, 40, 70]},
-        { title: 'April', values: [81, 19, 90]},
-        { title: 'May', values: [56, 86, 100]}
-      ]
-    };
+    this.table = this._diagramsDataService.lineChartData;
     this.exportFromTable(this.table);
   }
 

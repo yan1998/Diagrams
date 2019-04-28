@@ -28,6 +28,7 @@ import { FileDownloaderService } from './services/file-downloader.service';
 import { XmlService } from './services/xml.service';
 import { TwoColumnsTableComponent } from './tables/two-columns-table/two-columns-table.component';
 import { AssotiativeValuesTableComponent } from './tables/assotiative-values-table/assotiative-values-table.component';
+import { DiagramsDataService } from './services/diagrams-data.service';
 
 @NgModule({
   declarations: [
@@ -77,7 +78,8 @@ import { AssotiativeValuesTableComponent } from './tables/assotiative-values-tab
     GuiNotificatorService,
     JsonService,
     XmlService,
-    FileDownloaderService
+    FileDownloaderService,
+    DiagramsDataService
   ],
   bootstrap: [AppComponent]
 })

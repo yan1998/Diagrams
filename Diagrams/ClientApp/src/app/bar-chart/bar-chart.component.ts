@@ -3,6 +3,7 @@ import { AssotiativeValuesTable } from '../models/assotiative-values';
 import * as pluginDataLabels from 'chartjs-plugin-datalabels';
 import { ChartOptions, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
+import { DiagramsDataService } from '../services/diagrams-data.service';
 
 @Component({
   selector: 'app-bar-chart',
@@ -30,19 +31,10 @@ export class BarChartComponent implements OnInit {
   public table: AssotiativeValuesTable;
 
 
-  constructor() { }
+  constructor(private _diagramsDataService: DiagramsDataService) { }
 
   ngOnInit() {
-    this.table = {
-      setNames: ['Set 1', 'Set 2'],
-      rows: [
-        { title: '2011', values: [59, 48]},
-        { title: '2012', values: [80, 40]},
-        { title: '2013', values: [81, 19]},
-        { title: '2014', values: [56, 86]},
-        { title: '2015', values: [55, 27]},
-      ]
-    };
+    this.table = this._diagramsDataService.barChartData;
     this.exportFromTable(this.table);
   }
 
